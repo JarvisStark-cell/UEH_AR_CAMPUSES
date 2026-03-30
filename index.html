@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UEH METAVERSE: THE UNBOUNDED MAKERS</title>
+    <style>
+        /* === BIẾN MÀU SẮC (THEME) === */
+        :root {
+            --bg-dark: #070B19; /* Xanh đen sâu */
+            --ueh-blue: #00529C; 
+            --neon-blue: #00F0FF;
+            --neon-orange: #FF5E00;
+            --neon-green: #39FF14;
+            --text-light: #E2E8F0;
+            --card-bg: rgba(15, 23, 42, 0.7);
+        }
+
+        /* === CÀI ĐẶT CHUNG === */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-light); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3, h4 { color: #fff; margin-bottom: 15px; }
+        p { margin-bottom: 15px; color: #cbd5e1; }
+        a { text-decoration: none; }
+        
+        /* Hiệu ứng xuất hiện khi cuộn trang */
+        .fade-in { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* === 1. HERO SECTION (PARALLAX) === */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(7, 11, 25, 0.8), rgba(7, 11, 25, 0.9)), 
+                        url('https://via.placeholder.com/1920x1080/00529C/FFFFFF?text=Ảnh+Nền+UEH+Campus+Đẹp+Nhất') no-repeat center center;
+            background-attachment: fixed; /* Parallax effect */
+            background-size: cover;
+            padding: 0 20px;
+        }
+        .hero-content { z-index: 2; max-width: 900px; }
+        .hero h1 { font-size: 3.5rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 15px var(--neon-blue); }
+        .hero h3 { font-size: 1.5rem; color: var(--neon-orange); margin-bottom: 30px; font-weight: 300; }
+        .team-box { background: rgba(0,0,0,0.5); border-left: 4px solid var(--neon-green); padding: 20px; text-align: left; display: inline-block; border-radius: 8px; backdrop-filter: blur(5px); }
+        .team-box ul { list-style: none; }
+        .team-box li { margin-bottom: 8px; font-size: 1.1rem; }
+        .team-box li strong { color: var(--neon-blue); }
+
+        /* === CẤU TRÚC SECTION === */
+        section { padding: 80px 10vw; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 50px; text-transform: uppercase; color: var(--neon-orange); text-shadow: 0 0 10px rgba(255, 94, 0, 0.3); }
+
+        /* === 2. THE MAKERS (2 CỘT) === */
+        .makers-grid { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; }
+        .makers-content { flex: 1; min-width: 300px; }
+        .makers-image { flex: 1; min-width: 300px; border: 2px dashed var(--neon-blue); border-radius: 12px; overflow: hidden; position: relative; }
+        .makers-image img { width: 100%; height: auto; display: block; transition: transform 0.5s; }
+        .makers-image:hover img { transform: scale(1.05); }
+        .highlight-text { color: var(--neon-green); font-weight: bold; }
+
+        /* === 3. TECH STACK (4 CỘT CARDS) === */
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        .tech-card { background: var(--card-bg); padding: 30px; border-radius: 15px; border-top: 3px solid var(--neon-blue); transition: all 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .tech-card:hover { transform: translateY(-10px); box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); border-color: var(--neon-green); }
+        .tech-card h3 { color: var(--neon-blue); font-size: 1.3rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        .tech-card ul { padding-left: 20px; margin-top: 15px; }
+        .tech-card li { margin-bottom: 10px; font-size: 0.95rem; }
+
+        /* === 4. THE FLOW (TIMELINE) === */
+        .flow-container { max-width: 800px; margin: 0 auto; }
+        .flow-step { background: var(--card-bg); margin-bottom: 25px; padding: 25px; border-radius: 12px; border-left: 4px solid var(--neon-orange); display: flex; gap: 20px; align-items: center; flex-wrap: wrap;}
+        .flow-step-img { flex-shrink: 0; width: 150px; height: 100px; background: #000; border-radius: 8px; overflow: hidden; }
+        .flow-step-img img { width: 100%; height: 100%; object-fit: cover; }
+        .flow-step-content { flex: 1; min-width: 250px;}
+        .flow-step h3 { color: var(--neon-orange); margin-bottom: 10px; }
+
+        /* === 5. HIGHLIGHTS & POTENTIAL === */
+        .highlight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .hl-card { text-align: center; padding: 40px 20px; background: rgba(255,255,255,0.02); border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); }
+        .hl-card h3 { color: var(--neon-green); }
+
+        /* === 6. CALL TO ACTION === */
+        .cta-section { text-align: center; background: linear-gradient(45deg, #0f172a, #1e1b4b); }
+        .cta-box { display: inline-flex; flex-wrap: wrap; gap: 40px; justify-content: center; align-items: center; background: rgba(0,0,0,0.4); padding: 40px; border-radius: 20px; border: 1px solid var(--neon-blue); }
+        .qr-placeholder { width: 150px; height: 150px; background: #fff; padding: 10px; border-radius: 10px; }
+        .qr-placeholder img { width: 100%; height: 100%; }
+        .cta-text { text-align: left; max-width: 400px; }
+        .cta-text ol { margin-left: 20px; margin-top: 15px; }
+        .btn-download { display: inline-block; margin-top: 20px; padding: 12px 30px; background: var(--neon-blue); color: #000; font-weight: bold; border-radius: 30px; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-download:hover { background: var(--neon-green); box-shadow: 0 0 15px var(--neon-green); transform: scale(1.05); }
+
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-content fade-in">
+            <h1>UEH METAVERSE<br><span style="color: var(--neon-blue); font-size: 2.5rem;">THE UNBOUNDED MAKERS</span></h1>
+            <h3>Hành trình 50 năm kết nối Thực - Ảo (1976 - 2026)</h3>
+            <div class="team-box">
+                <h4 style="color: var(--neon-green); border-bottom: 1px solid #333; padding-bottom: 5px;">👥 ĐỘI NGŨ THỰC HIỆN: Nhóm Ad Astra</h4>
+                <ul>
+                    <li><strong>Nguyễn:</strong> Lead 3D Artist & Technical Lead & Hardware & R&D</li>
+                    <li><strong>Đỗ Trần Đan Trường:</strong> Mini-game</li>
+                    <li><strong>Hoàng Lưu Hoài Bảo:</strong> Poster Design + Content & UX/UI </li>
+                    <li><strong>Nguyễn Thị Trúc Vy:</strong> Poster Design + Content & UX/UI</li>
+                </ul>
+            </div>
+            <br>
+            <a href="#cta" class="btn-download" style="margin-top: 40px;">Khám Phá Ngay</a>
+        </div>
+    </header>
+
+    <section id="makers">
+        <h2 class="section-title fade-in">🌟 Handmade 100% - The Soul of UEH Metaverse</h2>
+        <div class="makers-grid">
+            <div class="makers-content fade-in">
+                <p>Thay vì sử dụng các mẫu assets có sẵn trên mạng, Nhóm Ad Astra chọn lối đi <strong>"Unbounded" (Không giới hạn)</strong>, bắt đầu mọi thứ từ con số 0.</p>
+                <p><span class="highlight-text">Tâm huyết từ con số 0:</span> 100% mô hình 3D (từ viên gạch, tán cây, đường nội khu đến các tòa nhà biểu tượng của UEH) đều do <strong>Nguyễn</strong> tự tay thiết kế và tối ưu hóa bằng phần mềm Blender.</p>
+                <p><span class="highlight-text">Độc bản & Tôn trọng lịch sử:</span> Đảm bảo tính độc nhất, tôn trọng nguyên mẫu kiến trúc UEH 50 năm, đồng thời lồng ghép trí tưởng tượng về một Campus xanh, bền vững trong tương lai.</p>
+                <p><span class="highlight-text">Kết nối Phygital:</span> Biến chiếc cốc IOT Smart Cup vô tri thành mỏ neo kết nối thế giới vật lý với Metaverse thông qua dữ liệu nhiệt độ và tương tác theo thời gian thực.</p>
+            </div>
+            <div class="makers-image fade-in">
+                <img src="https://github.com/JarvisStark-cell/UEH_AR_CAMPUSES/blob/main/UEH_CAMPUSES.png?raw=true" alt="Blender Wireframe">
+            </div>
+        </div>
+    </section>
+
+    <section id="tech">
+        <h2 class="section-title fade-in">🛠️ CẤU TRÚC HỆ THỐNG PHYGITAL</h2>
+        <div class="tech-grid">
+            <div class="tech-card fade-in">
+                <h3>🎨 Thiết kế 3D (Blender)</h3>
+                <p><strong>Bản sắc riêng</strong></p>
+                <ul>
+                    <li>Thiết kế Low-poly tối ưu hoàn toàn cho mobile.</li>
+                    <li>Custom Textures: Bê tông, Kính, Cây xanh độc quyền.</li>
+                    <li>Tối ưu Polygon giúp hiệu năng Real-time mượt mà.</li>
+                </ul>
+            </div>
+            <div class="tech-card fade-in">
+                <h3>🧠 Công nghệ AR (Unity 6 & Vuforia)</h3>
+                <p><strong>Nền tảng Thực ảo</strong></p>
+                <ul>
+                    <li>Unity 6 quản lý logic, UI/UX & hiệu ứng vật lý.</li>
+                    <li>Vuforia Engine: Tracking bề mặt cong của cốc cực kỳ ổn định.</li>
+                    <li>Hiệu ứng Animation "City Build-up" ấn tượng.</li>
+                </ul>
+            </div>
+            <div class="tech-card fade-in">
+                <h3>⚡ Hệ thống IoT (Hardware Layer)</h3>
+                <p><strong>Cốc Thông minh</strong></p>
+                <ul>
+                    <li>Vi điều khiển ESP8266/ESP32-C3 Wi-Fi.</li>
+                    <li>🌡️ NTC Thermistor: Cảm biến đo nhiệt độ nước.</li>
+                    <li>📡 IR TCRT5000: Phát hiện trạng thái đặt/nhấc cốc.</li>
+                    <li>📟 Màn hình OLED & 🔔 Buzzer phản hồi tương tác.</li>
+                </ul>
+            </div>
+            <div class="tech-card fade-in">
+                <h3>💻 Lập trình & Kết nối</h3>
+                <p><strong>Hệ điều hành & Network</strong></p>
+                <ul>
+                    <li>C# Scripting: Điều khiển AR Scene & Mini-Game.</li>
+                    <li>Arduino C++: Lập trình nhúng xử lý cảm biến tức thời.</li>
+                    <li>Web Integration: Deep-link trực tiếp tới hệ sinh thái smarttech.ueh.edu.vn.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="flow">
+        <h2 class="section-title fade-in">⚙️ THE INTERACTION LOOP</h2>
+        <div class="flow-container">
+            <div class="flow-step fade-in">
+                <div class="flow-step-img">
+                    <img src="https://github.com/JarvisStark-cell/UEH_AR_CAMPUSES/blob/main/Gemini_Generated_Image_r6pjzkr6pjzkr6pj.png?raw=true" alt="Scan AR">
+                </div>
+                <div class="flow-step-content">
+                    <h3>1. GIAI ĐOẠN NHẬN DIỆN (AR Scan)</h3>
+                    <p><strong>Hành động:</strong> Người dùng dùng camera quét Logo UEH 50 năm trên cốc.</p>
+                    <p><strong>Hiệu ứng AR:</strong> Mô hình các tòa nhà UEH Low-poly biểu tượng "mọc" lên từ chân cốc với vị trí dừng chuẩn xác tại đáy.</p>
+                </div>
+            </div>
+            <div class="flow-step fade-in">
+                <div class="flow-step-img">
+                    <img src="https://github.com/JarvisStark-cell/UEH_AR_CAMPUSES/blob/main/IOT_UEH_Campuses.jpg?raw=true" alt="IoT Interaction">
+                </div>
+                <div class="flow-step-content">
+                    <h3>2. GIAI ĐOẠN TƯƠNG TÁC IOT (Real-time Link)</h3>
+                    <p><strong>Tương tác vật lý:</strong> Đặt cốc xuống (IR kích hoạt Buzzer, OLED). Chế nước nóng/lạnh vào cốc (NTC đo nhiệt độ gửi Wi-Fi tới Unity).</p>
+                    <p><strong>Hiệu ứng AR:</strong> Tùy thuộc vào nhiệt độ nước, hệ sinh thái cây cối Metaverse sẽ mọc lên rực rỡ bao quanh tòa nhà.</p>
+                </div>
+            </div>
+            <div class="flow-step fade-in">
+                <div class="flow-step-img">
+                    <img src="https://via.placeholder.com/200x150/1E1B4B/39FF14?text=Ảnh+Mini+Game+Pháo+Hoa" alt="Game Phase">
+                </div>
+                <div class="flow-step-content">
+                    <h3>3. GIAI ĐOẠN GAME (Interactive Loop)</h3>
+                    <p><strong>Hành động:</strong> Người dùng chơi mini-game quăng banh ảo vào ly AR.</p>
+                    <p><strong>Hiệu ứng:</strong> Ném trúng sẽ kích hoạt Logo 50 năm UEH xoay tròn kèm hiệu ứng pháo hoa chúc mừng đầy màu sắc.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="highlights">
+        <h2 class="section-title fade-in">🚀 DẤU ẤN Nhóm Ad Astra & TẦM NHÌN</h2>
+        <div class="highlight-grid">
+            <div class="hl-card fade-in">
+                <h3>Authenticity (Độc Bản)</h3>
+                <p>Khẳng định năng lực tự chủ công nghệ của sinh viên UII: 100% handmade assets, không vay mượn. Tôn trọng lịch sử và kiến trúc UEH.</p>
+            </div>
+            <div class="hl-card fade-in">
+                <h3>Phygital Experience</h3>
+                <p>Trải nghiệm đa giác quan độc đáo: Kết hợp xúc giác (đổ nước), thị giác (hiển thị AR 3D) và thính giác (Buzzer). Metaverse không chỉ để xem.</p>
+            </div>
+            <div class="hl-card fade-in">
+                <h3>Potential Phase 2</h3>
+                <p>Sẵn sàng tích hợp cảm biến cân nặng đồ uống, kết nối hệ thống đo lường dinh dưỡng (Nutrio) và mở rộng thành bản đồ Metaverse toàn cơ sở UEH.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta" class="cta-section">
+        <h2 class="section-title fade-in" style="color: #fff;">📥 SẴN SÀNG CHẠM VÀO METAVERSE?</h2>
+        <div class="cta-box fade-in">
+            <div class="qr-placeholder">
+                <img src="https://via.placeholder.com/150x150/FFFFFF/000000?text=Mã+QR+Tải+App+APK" alt="QR Code">
+            </div>
+            <div class="cta-text">
+                <h3 style="color: var(--neon-blue);">HƯỚNG DẪN SỬ DỤNG:</h3>
+                <ol>
+                    <li><strong>Quét QR Code</strong> bên cạnh để tải file APK cài đặt.</li>
+                    <li><strong>Mở App</strong> và cấp quyền truy cập Camera.</li>
+                    <li><strong>Hướng camera</strong> vào Logo UEH trên Smart Cup.</li>
+                    <li><strong>Trải nghiệm</strong> mọc tòa nhà và chế nước để tương tác!</li>
+                </ol>
+                <a href="#" class="btn-download">⬇ Tải File .APK Trực Tiếp</a>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 20px; background: #000; font-size: 0.9rem; color: #666;">
+        <p>© 2026 UEH Metaverse - The Unbounded Makers (Group 12). Designed for UEH 50th Anniversary.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.fade-in').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
